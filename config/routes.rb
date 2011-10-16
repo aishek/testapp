@@ -1,7 +1,9 @@
 Testapp::Application.routes.draw do
+
   resources :questions, :only => [:create, :new] do
     member do
       get 'answer'
+      post 'save_answer'
     end
   end
   
