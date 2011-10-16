@@ -13,8 +13,8 @@ describe Question do
   
   describe :scopes do
     it "should have a default scope created at desc" do
-      question1 = Question.create :text => 'question 1', :created_at => 1.day.ago
-      question2 = Question.create :text => 'question 2', :created_at => 1.hour.ago
+      question1 = Question.create! :text => 'question 1', :created_at => 1.day.ago
+      question2 = Question.create! :text => 'question 2', :created_at => 1.hour.ago
       
       questions = Question.all
       
