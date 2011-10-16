@@ -1,16 +1,20 @@
 require 'spec_helper'
+require 'comment_helper'
 
 describe Comment do
+  include CommentHelper
 
-  pending "should be a Comment instance"
+  it "should be a Comment instance" do
+    Comment.new.should be_a_new(Comment)
+  end
 
   describe :associations do
-    pending "should belongs to question"
+    it { should belong_to(:question) }
   end
    
   describe :validations do
-    pending "should validate question"
-    pending "should validate text's presence"
+    it { should validate_presence_of(:question) }
+    it { should validate_presence_of(:text) }
   end
    
 end
