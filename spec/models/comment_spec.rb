@@ -11,6 +11,19 @@ describe Comment do
   describe :associations do
     it { should belong_to(:question) }
   end
+
+  describe :scopes do
+    it "should have a default scope created at desc" do
+      question = Question.create! :text => 'text'
+      question.answer = 'answer'
+      question.save!
+
+      comment1 = Comment.create! :text => '1', :question_id => question.id, :created_at => 1.day.ago
+      comment2 = Comment.create! :text => '2', :question_id => question.id, :created_at => 1.hour.ago
+      
+      question.comments.should == [comment2, comment1]
+    end
+  end
    
   describe :validations do
     it { should validate_presence_of(:question) }
