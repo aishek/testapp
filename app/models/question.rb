@@ -3,6 +3,8 @@ class Question < ActiveRecord::Base
   
   attr_protected :answer
   
+  has_many :comments, :inverse_of => :question
+  
   validates :text, :presence => true
   validates :answer, :presence => true, :unless => :new_record?
   

@@ -6,6 +6,10 @@ describe Question do
     question = Question.new
     question.should be_a(Question)
   end
+
+  describe :associations do
+    pending "should have many comments"
+  end
   
   describe :scopes do
     it "should have a default scope created at desc" do
