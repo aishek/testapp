@@ -51,4 +51,15 @@ describe Question do
     it { should_not allow_mass_assignment_of(:answer) }
   end
   
+  describe :comments do
+    it "should provide commentable? flag if have answered" do
+      question = Question.new :text => 'text'
+      question.commentable?.should == false
+      
+      question.answer = 'answer'
+      question.answered?.should == true
+      question.commentable?.should == true
+    end
+  end
+  
 end

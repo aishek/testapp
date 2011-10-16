@@ -11,4 +11,8 @@ class Question < ActiveRecord::Base
   def answered?
     answer.present?
   end
+  
+  def commentable?
+    answered?
+  end
 end

@@ -15,6 +15,19 @@ describe Comment do
   describe :validations do
     it { should validate_presence_of(:question) }
     it { should validate_presence_of(:text) }
+    it "commentable question" do
+      question = Question.create! :text => 'a'
+      comment = question.comments.build :text => 'b'
+
+      comment.should_not be_valid
+      comment.errors.count == 1
+      comment.errors[:question].should_not be_empty
+      
+      question.answer = 'answer'
+      question.save!
+
+      comment.should be_valid
+    end
   end
    
 end
