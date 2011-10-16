@@ -7,5 +7,7 @@
     =javascript_include_tag "application"
     =csrf_meta_tags
   %body
-    =notice
+    -if notice.present?
+      #notice
+        =notice
     =yield
