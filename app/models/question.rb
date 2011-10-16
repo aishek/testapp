@@ -3,10 +3,16 @@ class Question < ActiveRecord::Base
   
   attr_protected :answer
   
+  has_many :comments, :inverse_of => :question
+  
   validates :text, :presence => true
   validates :answer, :presence => true, :unless => :new_record?
   
   def answered?
     answer.present?
+  end
+  
+  def commentable?
+    answered?
   end
 end

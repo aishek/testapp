@@ -5,6 +5,8 @@ Testapp::Application.routes.draw do
       get 'answer'
       post 'save_answer'
     end
+    
+    resources :comments, :only => [:create, :index]
   end
   
   root :to => 'questions#index'
