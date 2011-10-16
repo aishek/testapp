@@ -8,7 +8,7 @@ describe Question do
   end
 
   describe :associations do
-    pending "should have many comments"
+    it { should have_many(:comments) }
   end
   
   describe :scopes do
@@ -23,15 +23,7 @@ describe Question do
   end
   
   describe :validations do
-    it "should validate text presence" do
-      question = Question.new
-      question.should_not be_valid
-      question.errors.count.should == 1
-      question.errors[:text].should_not be_empty
-      
-      question.text = 'text'
-      question.should be_valid
-    end
+    it { should validate_presence_of(:text) }
     
     it "should validate answer presence only for persisted" do
       question = Question.new :text => 'text'
@@ -41,7 +33,7 @@ describe Question do
       question.should_not be_valid
       question.errors.count.should == 1
       question.errors[:answer].should_not be_empty
-
+    
       question.answer = 'answer'
       question.should be_valid
     end
@@ -56,10 +48,7 @@ describe Question do
       question.answered?.should == true
     end
     
-    it "should be protected from answer via mass-assigment" do
-      question = Question.new :text => 'text', :answer => 'answer'
-      question.answer.should == nil
-    end
+    it { should_not allow_mass_assignment_of(:answer) }
   end
   
 end
