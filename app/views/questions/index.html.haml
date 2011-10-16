@@ -1,0 +1,23 @@
+-content_for(:ask_new_question) do
+  %p
+    =link_to "Ask new question", new_question_path
+
+%h1 Questions
+-if @questions.present?
+  =yield :ask_new_question
+  %ul
+    -@questions.each do |question|
+      %li
+        %h2
+          -if question.answered?
+            (answered)
+            =question.text
+          -else
+            =link_to question.text, answer_question_path(question)
+  =yield :ask_new_question
+-else
+  %p
+    No questions provided yet.
+    %br
+    Please,
+    =link_to "ask one", new_question_path

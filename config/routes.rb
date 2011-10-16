@@ -1,4 +1,14 @@
 Testapp::Application.routes.draw do
+
+  resources :questions, :only => [:create, :new] do
+    member do
+      get 'answer'
+      post 'save_answer'
+    end
+  end
+  
+  root :to => 'questions#index'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -3,6 +3,7 @@ source 'http://rubygems.org'
 # general
 gem 'rails', '3.1.1'
 gem 'rake', '0.9.2'
+gem 'rack' , '1.3.3'
 
 gem 'rspec'
 gem 'autotest'

@@ -1,0 +1,8 @@
+%h1 Ask question
+=form_for @question do |f|
+  =render :partial => 'shared/errors', :locals => { :object => @question }
+  %p
+    =f.label :text
+    %br
+    =f.text_area :text
+  =f.submit
