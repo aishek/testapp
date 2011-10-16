@@ -4,7 +4,7 @@ describe Question do
 
   it "should be a Question instance" do
     question = Question.new
-    question.should be_instance_of(Question)
+    question.should be_a(Question)
   end
   
   describe :scopes do

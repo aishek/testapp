@@ -21,7 +21,7 @@ class QuestionsController < ApplicationController
   def answer
   end
 
-  def save_answer    
+  def save_answer
     @question.answer = params[:question][:answer]
 
     if @question.save
