@@ -11,11 +11,23 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new params[:question]
-    if @question.save
-      redirect_to root_url, notice: "Question asked"
-    else
-      render action: "new"
-    end
+    
+    respond_to do |format|
+      format.js {
+        if @question.save
+          render :nothing => true
+        else
+          render :json => @question.errors
+        end
+      }
+      format.html {
+        if @question.save
+          redirect_to root_url, notice: "Question asked"
+        else
+          render action: "new"
+        end
+      }
+    end      
   end
 
   def answer
@@ -29,6 +41,16 @@ class QuestionsController < ApplicationController
     else
       render action: "answer"
     end
+  end
+  
+  
+  def test
+    @questions = Question.all
+  end
+  
+  def destroy
+    Question.delete params[:id]
+    render :nothing => true
   end
 
 

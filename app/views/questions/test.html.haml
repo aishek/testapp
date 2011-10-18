@@ -1,0 +1,18 @@
+=javascript_include_tag 'rr.jquery.js'
+=javascript_include_tag 'crud_test'
+
+%p
+  %a#create_test{ :href => '#' }
+    Test create
+
+%p
+  %a#create_test_error{ :href => '#' }
+    Test create error
+
+%ul
+  -@questions.each do |question|
+    %li
+      %h2
+        =question.text
+      %a.delete{ :href => '#', :resource => 'questions', :resource_id => question.id }
+        Удалить

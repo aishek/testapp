@@ -1,6 +1,6 @@
 Testapp::Application.routes.draw do
 
-  resources :questions, :only => [:create, :new] do
+  resources :questions, :only => [:create, :new, :destroy] do
     member do
       get 'answer'
       post 'save_answer'
@@ -8,7 +8,9 @@ Testapp::Application.routes.draw do
     
     resources :comments, :only => [:create, :index]
   end
-  
+
+  match 'test' => 'questions#test'
+
   root :to => 'questions#index'
 
   # The priority is based upon order of creation:
